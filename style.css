@@ -78,7 +78,7 @@ body {
 .color-to-match {
   width: 30%;
   height: 80%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;

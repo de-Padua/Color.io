@@ -29,12 +29,7 @@ class Game {
   colorsRandomizeBlocks(blocks) {
     //score container
     const scoreDomEl = document.querySelector(".score");
-    const dificult = Math.floor(Math.random() * 15);
-    if (dificult < 10) {
-      console.log("HARD");
-    } else {
-      console.log("easy");
-    }
+ 
 
     //color randomizer
     let h = Math.floor(Math.random() * 300);
@@ -52,7 +47,7 @@ class Game {
     //set colors to others blocks
     blocks.forEach((block) => {
       if (block.dataset.id != id) {
-        block.style.background = `hsla(${h + dificult}, ${s}%, ${a}%, 1)`;
+        block.style.background = `hsla(${h + this.dificulty() }, ${s}%, ${a}%, 1)`;
       }
     });
     //corret block color
@@ -72,7 +67,37 @@ class Game {
       });
     });
   }
+
+dificulty(){
+ 
+  const dificultyDomEl = document.querySelector(".dificulty")
+
+  let easy = 15
+  let mid = 10
+  let hard = 6
+  let extreme = 2
+
+if(score < 50){
+  dificultyDomEl.innerText = "Easy"
+  return easy
+  
 }
+else if(score < 100){
+  dificultyDomEl.innerText = "Medium"
+  return mid
+}
+else if(score < 150){
+  dificultyDomEl.innerText = "Hard"
+  return hard
+}
+else if(score < 200){
+  dificultyDomEl.innerText = "Impossible"
+  return extreme
+}
+} 
+}
+
+
 class Storage {
   static setUserScore() {
     localStorage.setItem("scores", JSON.stringify(products));
