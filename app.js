@@ -11,31 +11,31 @@ class Game {
     console.log(blocks);
     const start = document.querySelector("#start");
     const timeDomEL = document.querySelector(".remaing-time");
-    let con =  setInterval(() => {
-        if (sec < 1) {
-          blocks.forEach((block) => {
-            start.disabled = false;
-            clearInterval(con)
-          });
-        } else {
-          sec = sec - 1;
-          timeDomEL.innerText = sec;
-        
-
-        }
-      }, 1000);
+    let con = setInterval(() => {
+      if (sec < 1) {
+        blocks.forEach((block) => {
+          block.classList.add = "disabled"
+          start.disabled = false;
+          clearInterval(con);
+          
+        });
+      } else {
+        sec = sec - 1;
+        timeDomEL.innerText = sec;
+      }
+    }, 1000);
   }
   //random block
   colorsRandomizeBlocks(blocks) {
     //score container
     const scoreDomEl = document.querySelector(".score");
- 
 
     //color randomizer
     let h = Math.floor(Math.random() * 300);
     let s = Math.floor(Math.random() * 100);
     let a = Math.floor(Math.random() * 80);
 
+    //find the block with the correct id
     const corret_block = document.querySelector(".corret-block");
     let id = Math.floor(Math.random() * 16 + 1);
     let selectedSquare = blocks.find((block) => {
@@ -47,7 +47,9 @@ class Game {
     //set colors to others blocks
     blocks.forEach((block) => {
       if (block.dataset.id != id) {
-        block.style.background = `hsla(${h + this.dificulty() }, ${s}%, ${a}%, 1)`;
+        block.style.background = `hsla(${
+          h + this.dificulty()
+        }, ${s}%, ${a}%, 1)`;
       }
     });
     //corret block color
@@ -68,46 +70,37 @@ class Game {
     });
   }
 
-dificulty(){
- 
-  const dificultyDomEl = document.querySelector(".dificulty")
+  dificulty() {
+    const dificultyDomEl = document.querySelector(".dificulty");
 
-  let easy = 15
-  let mid = 10
-  let hard = 6
-  let extreme = 2
+    let easy = 25;
+    let mid = 15;
+    let hard = 10;
+    let extreme = 2;
 
-if(score < 50){
-  dificultyDomEl.innerText = "Easy"
-  return easy
-  
-}
-else if(score < 100){
-  dificultyDomEl.innerText = "Medium"
-  return mid
-}
-else if(score < 150){
-  dificultyDomEl.innerText = "Hard"
-  return hard
-}
-else if(score < 200){
-  dificultyDomEl.innerText = "Impossible"
-  return extreme
-}
-} 
-}
+    if (score < 50) {
+      dificultyDomEl.innerText = "Easy";
+      dificultyDomEl.style.color = "green"
+      return easy;
+    } else if (score < 100) {
+      dificultyDomEl.innerText = "Medium";
+      dificultyDomEl.style.color = "blue"
+      return mid;
+    } else if (score < 150) {
+      
+      dificultyDomEl.innerText = "Hard";
+      dificultyDomEl.style.color = "red"
 
+      return hard;
+    } else if (score < 200) {
+      dificultyDomEl.innerText = "Impossible";
+      dificultyDomEl.style.color = "black"
 
-class Storage {
-  static setUserScore() {
-    localStorage.setItem("scores", JSON.stringify(products));
-  }
-  static getUserScore() {
-    return localStorage.getItem("scores")
-      ? JSON.parse(localStorage.getItem("scores"))
-      : [];
+      return extreme;
+    }
   }
 }
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const game = new Game();
