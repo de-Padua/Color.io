@@ -155,6 +155,7 @@ body {
 .disabled{
   cursor: not-allowed;
   z-index: -1;
+  border: 2px solid black;
 }
 
 .infos{

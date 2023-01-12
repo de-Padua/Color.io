@@ -14,10 +14,9 @@ class Game {
     let con = setInterval(() => {
       if (sec < 1) {
         blocks.forEach((block) => {
-          block.classList.add = "disabled"
+          block.classList.add = "disabled";
           start.disabled = false;
           clearInterval(con);
-          
         });
       } else {
         sec = sec - 1;
@@ -25,6 +24,7 @@ class Game {
       }
     }, 1000);
   }
+
   //random block
   colorsRandomizeBlocks(blocks) {
     //score container
@@ -65,6 +65,9 @@ class Game {
           sec = sec + 3;
           score = score + 10;
           scoreDomEl.innerText = score;
+        } 
+        else {
+           
         }
       });
     });
@@ -80,27 +83,25 @@ class Game {
 
     if (score < 50) {
       dificultyDomEl.innerText = "Easy";
-      dificultyDomEl.style.color = "green"
+      dificultyDomEl.style.color = "green";
       return easy;
     } else if (score < 100) {
       dificultyDomEl.innerText = "Medium";
-      dificultyDomEl.style.color = "blue"
+      dificultyDomEl.style.color = "blue";
       return mid;
     } else if (score < 150) {
-      
       dificultyDomEl.innerText = "Hard";
-      dificultyDomEl.style.color = "red"
+      dificultyDomEl.style.color = "red";
 
       return hard;
     } else if (score < 200) {
       dificultyDomEl.innerText = "Impossible";
-      dificultyDomEl.style.color = "black"
+      dificultyDomEl.style.color = "black";
 
       return extreme;
     }
   }
 }
-
 
 document.addEventListener("DOMContentLoaded", () => {
   const game = new Game();
